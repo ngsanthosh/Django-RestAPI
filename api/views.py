@@ -5,6 +5,8 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from api import serializers
 
+from api import models
+
 import json
 # Create your views here.
 
@@ -21,5 +23,13 @@ def apiusers(request):
     student3=Student("Kumar",3,97)
     response=serializers.Studentserializer([student1,student2,student3], many=True)
     return Response(response.data)
+
+@api_view()
+def articleApi(request):
+    articles=models.Article.objects.all()
+    response=serializers.ArticleSerializer(articles, many = True)
+    return Response(response.data)
+
+
     
 
