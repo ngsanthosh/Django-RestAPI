@@ -4,5 +4,7 @@ from api import views
 
 urlpatterns = [
     path('users/', views.apiusers),
-    path('articles/', views.articleApi)
+    path('articles/', views.articleApi),
+    path('createarticles/', views.createArticleApi),
+
 ]

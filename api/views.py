@@ -30,6 +30,21 @@ def articleApi(request):
     response=serializers.ArticleSerializer(articles, many = True)
     return Response(response.data)
 
+@api_view(['POST'])
+def createArticleApi(request):
+    body=json.loads(request.body)
+    response=serializers.ArticleSerializer(data =body)
+
+    if response.is_valid():
+
+        inst = response.save()
+        response=serializers.ArticleSerializer(inst)
+        return Response(response.data)
+
+    # print(json.loads(request.body))
+    return Response(response.errors)
+
+
 
     
 
